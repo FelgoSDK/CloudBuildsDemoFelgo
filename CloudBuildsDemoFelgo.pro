@@ -11,6 +11,12 @@ PRODUCT_IDENTIFIER = com.yourcompany.cloudbuildsdemofelgo
 PRODUCT_VERSION_NAME = 1.0.0
 PRODUCT_VERSION_CODE = 1
 
+# Optionally set a license key that is used instead of the license key from
+# main.qml file (App::licenseKey for your app or GameWindow::licenseKey for your game)
+# Only used for local builds and Felgo Cloud Builds (https://felgo.com/cloud-builds)
+# Not used if using Felgo Live
+PRODUCT_LICENSE_KEY = ""
+
 qmlFolder.source = qml
 DEPLOYMENTFOLDERS += qmlFolder # comment for publishing
 
