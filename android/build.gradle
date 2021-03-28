@@ -13,17 +13,18 @@ allprojects {
     repositories {
         maven { url 'https://maven.google.com' }
         jcenter()
-        maven { url 'https://sdk.v-play.net/maven/' }
+        maven { url 'https://install.felgo.com/maven/' }
     }
 }
 
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "com.android.support:support-core-utils:27.1.0"
-    compile "com.android.support:appcompat-v7:27.1.0"
+    implementation "com.android.support:support-core-utils:28.0.0"
+    implementation "com.android.support:appcompat-v7:28.0.0"
+
 
 }
 
@@ -41,13 +42,22 @@ android {
      * Changing them manually might break the compilation!
      *******************************************************/
 
-    compileSdkVersion androidCompileSdkVersion.toInteger()
-    buildToolsVersion androidBuildToolsVersion
+    compileSdkVersion    androidCompileSdkVersion.toInteger()
+    buildToolsVersion    androidBuildToolsVersion
 
     defaultConfig {
-      applicationId = productIdentifier
-      versionCode = productVersionCode.toInteger()
-      versionName = productVersionName
+      targetSdkVersion   androidCompileSdkVersion.toInteger()
+      applicationId    = productIdentifier
+      versionCode      = productVersionCode.toInteger()
+      versionName      = productVersionName
+
+      int qtVersionNr = project.hasProperty("qtVersionInt") ? qtVersionInt.toInteger() : 5132
+      if (qtVersionNr < 5140) {
+        resValue('array', 'load_local_libs', "")
+      } else if (qtVersionNr >= 5140) {
+        resValue('array', 'bundled_in_lib', "")
+        resValue('array', 'bundled_in_assets', "")
+      }
     }
 
     sourceSets {

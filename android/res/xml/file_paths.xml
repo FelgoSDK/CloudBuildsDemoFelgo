@@ -27,7 +27,7 @@
     <cache-path name="cache" path="."/>
 
     <!-- app internal files, used with FileUtils.DesktopLocation and others: /data/data/<package-name>/files/<file> -->
-    <!--<files-path name="files" path="."/>-->
+    <files-path name="files" path="."/>
 
     <!-- external files belonging to the app, used with most FileUtils locations: /sdcard/Android/data/<package-name>/files/<file> -->
     <!--<external-files-path name="external-files" path="."/>-->

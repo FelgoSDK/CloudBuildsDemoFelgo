@@ -28,6 +28,8 @@
     <true/>
     <key>UIRequiresFullScreen</key>
     <true/>
+    <key>UILaunchStoryboardName</key>
+    <string>Launch Screen</string>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
@@ -47,6 +49,10 @@
     <string>App would like to save images taken with camera.</string>
     <key>NSCameraUsageDescription</key>
     <string>App would like to access the camera.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>App would like to access Bluetooth.</string>
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>App would like to access Bluetooth.</string>
     <key>NSContactsUsageDescription</key>
     <string>App would like to read contacts from the Addressbook.</string>
 </dict>
