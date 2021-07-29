@@ -1,18 +1,18 @@
 buildscript {
     repositories {
-        maven { url 'https://maven.google.com' }
-        jcenter()
+        google()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.6.0'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'https://maven.google.com' }
-        jcenter()
+        google()
+        mavenCentral()
         maven { url 'https://install.felgo.com/maven/' }
     }
 }
@@ -22,8 +22,7 @@ apply plugin: 'com.android.application'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation "com.android.support:support-core-utils:28.0.0"
-    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "androidx.appcompat:appcompat:1.2.0"
 
 
 }
@@ -45,11 +44,18 @@ android {
     compileSdkVersion    androidCompileSdkVersion.toInteger()
     buildToolsVersion    androidBuildToolsVersion
 
+    compileOptions {
+      sourceCompatibility 1.8
+      targetCompatibility 1.8
+    }
+
     defaultConfig {
+      multiDexEnabled true
       targetSdkVersion   androidCompileSdkVersion.toInteger()
       applicationId    = productIdentifier
       versionCode      = productVersionCode.toInteger()
       versionName      = productVersionName
+      minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 21
 
       int qtVersionNr = project.hasProperty("qtVersionInt") ? qtVersionInt.toInteger() : 5132
       if (qtVersionNr < 5140) {
@@ -75,6 +81,12 @@ android {
 
     lintOptions {
         abortOnError false
+    }
+    aaptOptions { // Do not compress Qt binary resources file
+        noCompress 'rcc'
+    }
+    tasks.withType(JavaCompile) {
+        options.incremental = true
     }
 }
 
