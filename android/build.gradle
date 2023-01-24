@@ -55,15 +55,8 @@ android {
       applicationId    = productIdentifier
       versionCode      = productVersionCode.toInteger()
       versionName      = productVersionName
-      minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 21
+      minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 23
 
-      int qtVersionNr = project.hasProperty("qtVersionInt") ? qtVersionInt.toInteger() : 5132
-      if (qtVersionNr < 5140) {
-        resValue('array', 'load_local_libs', "")
-      } else if (qtVersionNr >= 5140) {
-        resValue('array', 'bundled_in_lib', "")
-        resValue('array', 'bundled_in_assets', "")
-      }
     }
 
     sourceSets {
