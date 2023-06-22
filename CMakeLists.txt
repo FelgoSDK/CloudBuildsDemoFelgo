@@ -49,8 +49,8 @@ qt_add_qml_module(appCloudBuildsDemoFelgo
     URI CloudBuildsDemoFelgo
     VERSION 1.0
 # uncomment for publishing:
-#    QML_FILES ${QmlFiles}
-#    RESOURCES ${AssetsFiles}
+    QML_FILES ${QmlFiles}
+    RESOURCES ${AssetsFiles}
     NO_RESOURCE_TARGET_PATH
 )
 
