@@ -10,7 +10,7 @@ find_package(Felgo REQUIRED)
 # Project identifier and version
 # More information: https://felgo.com/doc/felgo-publishing/#project-configuration
 set(PRODUCT_IDENTIFIER "com.yourcompany.cloudbuildsdemofelgo")
-set(PRODUCT_VERSION_NAME "1.0.0")
+set(PRODUCT_VERSION_NAME "1.0")
 set(PRODUCT_VERSION_CODE 1)
 
 # Set either "test" or "publish" stage:
@@ -19,11 +19,8 @@ set(PRODUCT_STAGE "test")
 # Optionally set a license key that is used instead of the license key from
 # main.qml file (App::licenseKey for your app or GameWindow::licenseKey for your game)
 # Only used for local builds and Felgo Cloud Builds (https://felgo.com/cloud-builds)
-# Not used if using Felgo Live
+# Not used if using Felgo Developer App
 set(PRODUCT_LICENSE_KEY "")
-
-set(FELGO_PLUGINS
-)
 
 # Find all QML/JS files for the QML compiler:
 file(GLOB_RECURSE QmlFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} qml/*.qml qml/*.js)
@@ -32,6 +29,7 @@ file(GLOB_RECURSE QmlFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} qml/*.qml qml/*.
 file(GLOB_RECURSE AssetsFiles RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} assets/* qml/*)
 list(REMOVE_ITEM AssetsFiles ${QmlFiles})
 
+# Executable should have same name as project
 qt_add_executable(appCloudBuildsDemoFelgo
     main.cpp
     ${QmlFiles}
@@ -68,7 +66,7 @@ target_compile_definitions(appCloudBuildsDemoFelgo
 
 target_link_libraries(appCloudBuildsDemoFelgo PRIVATE Felgo)
 
-# uncomment this line to add the Live Client Module and use live reloading with your custom C++ code
-# for the remaining steps to build a custom Live Code Reload app see here: https://felgo.com/custom-code-reload-app/
-#find_package(FelgoLive REQUIRED)
-#target_link_libraries(appCloudBuildsDemoFelgo PRIVATE FelgoLive)
+# uncomment this line to add Felgo Hot Reload and use hot reloading with your custom C++ code
+# for the remaining steps see here: https://felgo.com/custom-code-reload-app/
+# find_package(FelgoHotReload REQUIRED)
+# target_link_libraries(appCloudBuildsDemoFelgo PRIVATE FelgoHotReload)

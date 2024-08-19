@@ -23,8 +23,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation "androidx.appcompat:appcompat:1.2.0"
-
-
 }
 
 android {
@@ -41,6 +39,8 @@ android {
      * Changing them manually might break the compilation!
      *******************************************************/
 
+    namespace            androidPackageName
+    
     compileSdkVersion    androidCompileSdkVersion.toInteger()
     buildToolsVersion    androidBuildToolsVersion
 
@@ -52,11 +52,12 @@ android {
     defaultConfig {
       multiDexEnabled true
       targetSdkVersion   androidCompileSdkVersion.toInteger()
-      applicationId    = productIdentifier
+      applicationId    = androidPackageName
       versionCode      = productVersionCode.toInteger()
       versionName      = productVersionName
       minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 23
 
+          
     }
 
     sourceSets {
@@ -80,6 +81,11 @@ android {
     }
     tasks.withType(JavaCompile) {
         options.incremental = true
+    }
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
     }
 }
 

@@ -10,20 +10,20 @@
 
     there are different types of paths that can be mapped:
 
-    - NativeUtils.displayCameraPicker() stores the taken picture to the external Pictures directory
+    - nativeUtils.displayCameraPicker() stores the taken picture to the external Pictures directory
         - for this, the first entry is necessary.
 
-    - add the paths you want to use with NativeUtils.openUrl() below:
+    - add the paths you want to use with nativeUtils.openUrl() below:
         - <files-path ...> for FileUtils.DesktopLocation and others
         - <cache-path ...> for FileUtils.CacheLocation and others
         - <external-path ...> for most other FileUtils locations
         - the others are only necessary when using a custom URL
         -->
 
-    <!-- the path for NativeUtils.displayCameraPicker() -->
+    <!-- the path for nativeUtils.displayCameraPicker() -->
     <external-files-path name="images" path="Pictures"/>
 
-    <!-- app internal cache used with NativeUtils.storeContacts() and FileUtils.CacheLocation: /data/data/<package-name>/cache/<file> -->
+    <!-- app internal cache used with nativeUtils.storeContacts() and FileUtils.CacheLocation: /data/data/<package-name>/cache/<file> -->
     <cache-path name="cache" path="."/>
 
     <!-- app internal files, used with FileUtils.DesktopLocation and others: /data/data/<package-name>/files/<file> -->
