@@ -22,9 +22,11 @@ apply plugin: 'com.android.application'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation 'androidx.core:core:1.13.1'
     implementation "androidx.appcompat:appcompat:1.2.0"
 }
 
+def intCompileSdkVersion = androidCompileSdkVersion.replaceAll("[^0-9]", "").toInteger()
 android {
     /*******************************************************
      * The following variables:
@@ -41,7 +43,7 @@ android {
 
     namespace            androidPackageName
     
-    compileSdkVersion    androidCompileSdkVersion.toInteger()
+    compileSdkVersion    intCompileSdkVersion
     buildToolsVersion    androidBuildToolsVersion
 
     compileOptions {
@@ -51,11 +53,11 @@ android {
 
     defaultConfig {
       multiDexEnabled true
-      targetSdkVersion   androidCompileSdkVersion.toInteger()
-      applicationId    = androidPackageName
+      targetSdkVersion   intCompileSdkVersion
+      applicationId    = productIdentifier
       versionCode      = productVersionCode.toInteger()
       versionName      = productVersionName
-      minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 23
+      minSdkVersion    = project.hasProperty("qtMinSdkVersion") ? qtMinSdkVersion.toInteger() : 28
 
           
     }
